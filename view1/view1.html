@@ -1,0 +1,61 @@
+<p>This is the partial for view 1.</p>
+<form>
+    <div class="row">
+        <div class="small-3 columns">
+            <label class="right inline">ФИО</label>
+        </div>
+        <div class="small-9 columns">
+            <input type="text" ng-model="name" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-3 columns">
+            <label class="right inline">№ телефона</label>
+        </div>
+        <div class="small-9 columns">
+            <input type="text" ng-model="phone" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-3 columns">
+            <label class="right inline">Эл. почта</label>
+        </div>
+        <div class="small-9 columns">
+            <input type="text" ng-model="email" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-3 columns"></div>
+        <div class="small-9 columns">
+            <button class="small radius" ng-click="addNewPerson()" ng-hide="currentPersonId > -1">Добавить</button>
+            <button class="small radius" ng-click="savePerson()" ng-show="currentPersonId > -1">Сохранить</button>
+        </div>
+    </div>
+</form>
+<table id="phonebook">
+    <thead>
+    <tr>
+        <th>№</th>
+        <th>ФИО</th>
+        <th>№ телефона</th>
+        <th>Эл. почта</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td colspan="5"><input type="text" ng-model="search" /></td>
+    </tr>
+    <tr ng-repeat="person in phonebook | filter:search">
+        <td>{{ $index }}</td>
+        <td>{{ person.name }}</td>
+        <td>{{ person.phone }}</td>
+        <td>{{ person.email }}</td>
+        <td>
+            <ul class="button-group radius">
+                <li><button class="tiny radius" ng-click="editPerson($index)">ред-ть</button></li>
+                <li><button class="tiny radius alert" ng-click="deletePerson(person)">удалить</button></li>
+            </ul>
+        </td>
+    </tr>
+    </tbody>
+</table>
